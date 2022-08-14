@@ -1,19 +1,32 @@
-<section>
-    <div class="example-button-row">
-      <button mat-button color="primary" (click)="getTransactions(address.value,block.value)">Get transactions</button>
-    </div>
-    <div>
-      <mat-form-field appearance="fill">
-        <mat-label>Address</mat-label>
-        <input matInput type="text" #address value="0xaa7a9ca87d3694b5755f213b5d04094b8d0f0a6f">
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Block</mat-label>
-        <input matInput type="text" #block value="9000000">
-      </mat-form-field>
-    </div> 
-</section>   
 
+<mat-card class="transactions-card">
+
+<mat-card-title>List of transations</mat-card-title>
+    <mat-card-subtitle>Input address and starting block</mat-card-subtitle>
+    <mat-card-content>
+        <section>
+            
+            <div class="forms">
+              <span> 
+              <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <input matInput type="text" #address value="0xaa7a9ca87d3694b5755f213b5d04094b8d0f0a6f">
+              </mat-form-field>
+              </span>
+              <span>
+              <mat-form-field appearance="fill">
+                <mat-label>Block</mat-label>
+                <input matInput type="text" #block value="9000000">
+              </mat-form-field>
+              </span>
+              <span class="example-button-row">
+                <button mat-button color="primary" (click)="getTransactions(address.value,block.value)">Get transactions</button>
+              </span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div> 
+        </section>   
 <table mat-table [dataSource]="dataSource" class="transactions-table mat-elevation-z8">
 
    
@@ -50,3 +63,5 @@
   </table>
   <mat-paginator #paginator [pageSizeOptions]="[10,15,20]"  [pageIndex]="pageIndex"
 showFirstLastButtons [length]="length" (page)="updateTable($event)"></mat-paginator>
+</mat-card-content>
+</mat-card>

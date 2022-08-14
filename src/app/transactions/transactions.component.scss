@@ -6,6 +6,17 @@
 
 mat-paginator  {
     color: black !important;
+    max-width: 100%;
     background-color:rosybrown;
-  }
-  
+}
+
+.forms{
+    display: flex;
+    justify-content: space-between;
+    background : rgb(212, 225, 228);
+}
+.transactions-card {
+    width: 1024px;
+    margin: 0 auto;
+    background-color: aquamarine;
+}

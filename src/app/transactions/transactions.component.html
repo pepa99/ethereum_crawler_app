@@ -1,11 +1,15 @@
 <section>
     <div class="example-button-row">
-      <button mat-button color="primary" (click)="getTransactions(address.value)">Get transactions</button>
+      <button mat-button color="primary" (click)="getTransactions(address.value,block.value)">Get transactions</button>
     </div>
     <div>
       <mat-form-field appearance="fill">
         <mat-label>Address</mat-label>
-        <input matInput type="text" #address>
+        <input matInput type="text" #address value="0xaa7a9ca87d3694b5755f213b5d04094b8d0f0a6f">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Block</mat-label>
+        <input matInput type="text" #block value="9000000">
       </mat-form-field>
     </div> 
 </section>   

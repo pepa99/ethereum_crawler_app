@@ -29,8 +29,8 @@ export class TransactionsComponent implements  OnInit {
   ngOnInit(): void {
 
   }
-  public getTransactions(address:string){
-    this.service.getTransactions(address).subscribe((res)=>{
+  public getTransactions(address:string, block:string){
+    this.service.getTransactions(address,block).subscribe((res)=>{
       this.transactions=res;
       this.length=this.transactions.result.length;
       this.dataSource.data=this.transactions.result.slice(this.pageIndex,this.pageIndex+this.pageSize);

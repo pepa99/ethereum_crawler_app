@@ -29,7 +29,7 @@ export class BalanceDialogComponent implements OnInit {
     this.service.getTransactions(address,'9000000').subscribe((res)=>{
       console.log("here");
       this.transactions=res;
-      if(this.transactions.result=='1'){
+      if(this.transactions.status=='1'){
       this.transactions.result.forEach((element: { from: string; value: string; timeStamp:string; isError:string}) => {
         if(timeStamp(date)>parseInt(element.timeStamp) && element.isError=='0'){
         if(element.from==address){

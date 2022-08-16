@@ -30,8 +30,12 @@
               </span>
               <span class="example-button-row">
                 <button mat-button color="primary" (click)="getTransactions(address.value,block.value)">Get transactions</button>
+                
               </span>
-              <span></span>
+              <span class="spinner">
+                <mat-spinner *ngIf="resourcesLoaded === true" [diameter]="30"></mat-spinner>
+
+              </span>
               <span></span>
               <span></span>
             </div> 

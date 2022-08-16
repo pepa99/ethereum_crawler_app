@@ -9,6 +9,8 @@ import { TransactionService } from '../transaction.service';
 })
 export class BalanceDialogComponent implements OnInit {
   public transactions: any=[];
+  resourcesLoaded:boolean=false;
+
   constructor(
     public dialogRef: MatDialogRef<BalanceDialogComponent>,
     public dialog: MatDialog,
@@ -20,12 +22,14 @@ export class BalanceDialogComponent implements OnInit {
   }
   public balance(date:string, address:string)
   {
+    this.resourcesLoaded=true;
     let bal=0;
     let timeStamp = (date: string) => Date.parse(date);
     console.log(timeStamp(date));
     this.service.getTransactions(address,'9000000').subscribe((res)=>{
       console.log("here");
       this.transactions=res;
+      if(this.transactions.result=='1'){
       this.transactions.result.forEach((element: { from: string; value: string; timeStamp:string; isError:string}) => {
         if(timeStamp(date)>parseInt(element.timeStamp) && element.isError=='0'){
         if(element.from==address){
@@ -35,6 +39,10 @@ export class BalanceDialogComponent implements OnInit {
         }}
       });
       window.alert(bal);
+      }else{
+        window.alert(this.transactions.result);
+      }
+      this.resourcesLoaded=false;
     });  
     
   } 

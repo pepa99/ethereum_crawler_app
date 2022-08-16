@@ -8,6 +8,14 @@
         <mat-form-field appearance="fill">
             <mat-label>Address</mat-label>
             <input matInput type="text" #address value='0xaa7a9ca87d3694b5755f213b5d04094b8d0f0a6f'>
-          </mat-form-field> 
-  <button mat-button  (click)="balance(date.value,address.value)">Calculate</button>
+          </mat-form-field>        
+  
+</div>
+<div>
+    <span>
+    <button mat-button  (click)="balance(date.value,address.value)">Calculate</button>
+</span>
+<span>
+    <mat-spinner *ngIf="resourcesLoaded === true" [diameter]="30"></mat-spinner>
+</span>
 </div>

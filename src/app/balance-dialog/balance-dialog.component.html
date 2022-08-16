@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Check balance</h1>
+<div mat-dialog-content>Enter date in YYYY-MM-DD format, and address: </div>
+<div mat-dialog-actions>
+        <mat-form-field appearance="fill">
+            <mat-label>Date</mat-label>  
+          <input matInput type="text" #date value='2022-01-01'>
+        </mat-form-field> 
+        <mat-form-field appearance="fill">
+            <mat-label>Address</mat-label>
+            <input matInput type="text" #address value='0xaa7a9ca87d3694b5755f213b5d04094b8d0f0a6f'>
+          </mat-form-field> 
+  <button mat-button  (click)="balance(date.value,address.value)">Calculate</button>
+</div>

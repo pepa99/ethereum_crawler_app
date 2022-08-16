@@ -3,6 +3,15 @@
 
 <mat-card-title>List of transations</mat-card-title>
     <mat-card-subtitle>Input address and starting block</mat-card-subtitle>
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="checkBalance()">
+            <mat-icon>money</mat-icon>
+            <span>Check balance</span>
+        </button>
+    </mat-menu>
     <mat-card-content>
         <section>
             

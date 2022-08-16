@@ -12,11 +12,16 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
+import { BalanceDialogComponent } from './balance-dialog/balance-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    BalanceDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,10 @@ import { MatCardModule } from '@angular/material/card';
     MatFormFieldModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatDialogModule
     
   ],
   providers: [],

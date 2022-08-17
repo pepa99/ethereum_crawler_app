@@ -14,6 +14,7 @@ export class TransactionsComponent implements  OnInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   public transactions: any=[];
+  public all_transactions:any=[];
   resourcesLoaded:boolean=false;
    length:number=0;
   public displayedColumns: string[]=["blockNumber","from","to","value"];
@@ -31,25 +32,51 @@ export class TransactionsComponent implements  OnInit {
   ngOnInit(): void {
 
   }
-  public getTransactions(address:string, block:string){
+  public async getTransactions(address:string, block:string){
+    this.all_transactions=[];
+    this.length=0;
     this.resourcesLoaded=true;
-    this.service.getTransactions(address,block).subscribe((res)=>{
-      this.transactions=res;
-      if(this.transactions.status=='1'){
-      this.length=this.transactions.result.length;
-      this.dataSource.data=this.transactions.result.slice(this.pageIndex,this.pageIndex+this.pageSize);
-      console.log(this.transactions);
+    var num=10000;
+    var suma=0;
+    var i=0;
+    while(num==10000){
+      console.log(i);
+    await new Promise<void>(async (resolve, reject) => (await this.service.getTransactions(address, block)).subscribe((res) => {
+      this.transactions = res;
+      try{
+      if (this.transactions.status == '1') {
+        this.all_transactions.push(...this.transactions.result);
+        this.length += this.transactions.result.length;
+        num=this.transactions.result.length;
+        block=this.transactions.result[num-1].blockNumber;
+        try{
+        resolve();
+        }catch(e){
+          reject();
+        }
       }
-      else{
+      else {
         window.alert(this.transactions.result);
+        this.resourcesLoaded = false;
+        num=0;
+        reject();
       }
-      this.resourcesLoaded=false;
-      });
+    }catch(e){
+      reject();
+    }
+      
+    }));
+    i+=1
   }
+  this.resourcesLoaded = false;
+  console.log(this.all_transactions);
+  this.dataSource.data = this.all_transactions.slice(this.pageIndex, this.pageIndex + this.pageSize);
+  }
+  
   public updateTable(e:any){
     this.pageIndex=e.pageIndex;
     this.pageSize=e.pageSize;
-    this.dataSource.data=this.transactions.result.slice(this.pageIndex*this.pageSize,(this.pageIndex+1)*this.pageSize);
+    this.dataSource.data=this.all_transactions.slice(this.pageIndex*this.pageSize,(this.pageIndex+1)*this.pageSize);
     console.log(this.dataSource.data);
   }    
 

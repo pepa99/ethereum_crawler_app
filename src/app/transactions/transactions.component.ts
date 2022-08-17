@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BalanceDialogComponent } from '../balance-dialog/balance-dialog.component';
-
+import { expand } from 'rxjs';
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
@@ -33,7 +33,9 @@ export class TransactionsComponent implements  OnInit {
   }
   public getTransactions(address:string, block:string){
     this.resourcesLoaded=true;
-    this.service.getTransactions(address,block).subscribe((res)=>{
+    this.service.getTransactions(address,block).pipe(
+      expand(val=>{return 1+val;})
+    ).subscribe((res)=>{
       this.transactions=res;
       if(this.transactions.status=='1'){
       this.length=this.transactions.result.length;

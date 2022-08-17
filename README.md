@@ -8,10 +8,10 @@ After downloading app go to file where app is placed open command prompt and run
 
 ## Get transactions list
 
-Input wallet address and staring block number and click Get transactions button.
+Enter wallet address and staring block number and click Get transactions button.
 
 ## Check balance of the wallet on specific date
 
-Click on balance icon and choose token. After that input date and address as instructed. Click on Calculate button and wait for alert window to read amount.
+Click on balance icon and choose token. After that enter date and address as instructed. Click on Calculate button and wait for alert window to read amount.
 
 

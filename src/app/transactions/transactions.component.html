@@ -6,20 +6,32 @@
             <mat-icon>balance</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="checkBalance()">
+            <button mat-menu-item (click)="checkBalance('ETH')">
                 <mat-icon>Ethereum</mat-icon>
                 <span>ETH</span>
             </button>
+            <button mat-menu-item (click)="checkBalance('tokentx')">
+              <mat-icon>token</mat-icon>
+              <span>ERC 20</span>
+          </button>
+          <button mat-menu-item (click)="checkBalance('tokennfttx')">
+            <mat-icon>token</mat-icon>
+            <span>ERC 721</span>
+        </button>
+        <button mat-menu-item (click)="checkBalance('token1155tx')">
+          <mat-icon>token</mat-icon>
+          <span>ERC 1155</span>
+      </button>
         </mat-menu>
         </div>
         <br>
-<mat-card-title>List of Ethereum transations</mat-card-title>
-    <mat-card-subtitle>Input address and starting block</mat-card-subtitle>
+<mat-card-title>List of Ethereum transactions</mat-card-title>
+    <mat-card-subtitle>Input address and starting block and select transaction kind</mat-card-subtitle>
     
     
     <mat-card-content>
         <section>
-            
+            <mat-card-title id="kind" class="center">Click on the button to select transaction kind</mat-card-title>
             <div class="forms">
               <span> 
               <mat-form-field appearance="fill">
@@ -34,14 +46,28 @@
               </mat-form-field>
               </span>
               <span class="example-button-row">
-                <button mat-button color="primary" (click)="getTransactions(address.value,block.value)">Get transactions</button>
+                <button mat-button color="primary" (click)="getTransactions('Normal','txlist',address.value,block.value)">Normal</button>
                 
+              </span>
+              <span class="example-button-row">
+                <button mat-button color="primary" (click)="getTransactions('Internal','txlistinternal',address.value,block.value)">Internal</button>
+
+              </span>
+              <span class="example-button-row">
+                <button mat-button color="primary" (click)="getTransactions('ERC20','tokentx',address.value,block.value)">ERC20</button>
+
+              </span>
+              <span class="example-button-row">
+                <button mat-button color="primary" (click)="getTransactions('ERC721','tokennfttx',address.value,block.value)">ERC721</button>
+
+              </span>
+              <span class="example-button-row">
+                <button mat-button color="primary" (click)="getTransactions('ERC115','token1155tx',address.value,block.value)">ERC1155</button>
+
               </span>
               <span class="spinner">
                 <mat-spinner *ngIf="resourcesLoaded === true" [diameter]="30"></mat-spinner>
-
               </span>
-              <span></span>
               <span></span>
             </div> 
         </section>   
@@ -71,10 +97,13 @@
       </ng-container>
 
     <ng-container matColumnDef="value">
-        <th mat-header-cell *matHeaderCellDef> Value (wei)</th>
+        <th mat-header-cell *matHeaderCellDef> Value </th>
         <td mat-cell *matCellDef="let element"> {{element.value}} </td>
       </ng-container>
-    
+      <ng-container matColumnDef="tokenName">
+        <th mat-header-cell *matHeaderCellDef> Token </th>
+        <td mat-cell *matCellDef="let element"> {{element.tokenName || 'ETH'}} </td>
+      </ng-container>
       
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

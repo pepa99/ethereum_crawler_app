@@ -21,3 +21,4 @@ describe('BalanceDialogComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

@@ -102,7 +102,7 @@ export class TransactionsComponent implements  OnInit {
 
   public checkBalance(yourData:string){
     const dialogRef = this.dialog.open(BalanceDialogComponent, {
-      width: '350px',
+      width: '450px',
       data: {
         dataKey: yourData
       }

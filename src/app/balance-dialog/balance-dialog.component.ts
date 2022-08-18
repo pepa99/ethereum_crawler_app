@@ -27,6 +27,8 @@ export class BalanceDialogComponent implements OnInit {
   {
     console.log(this.data.dataKey);
     if(this.data.dataKey=='ETH'){
+      //var textarea=document.getElementById("tokeni");
+      //if(textarea!=null){textarea.hidden=true}  
     this.resourcesLoaded=true;
     console.log(this.transactions);
     let bal=0;
@@ -88,6 +90,8 @@ export class BalanceDialogComponent implements OnInit {
     }));  
   }
     this.resourcesLoaded=false;
+    var textarea=document.getElementById("tokeni");
+      if(textarea!=null){textarea.innerHTML="ETH Balance at date "+date+" is "+bal/1000000000000000000+" Ether.";} 
     window.alert("ETH Balance at date "+date+" is "+bal/1000000000000000000+" Ether.");
   }
   else{
@@ -151,9 +155,9 @@ export class BalanceDialogComponent implements OnInit {
     tokeni+=token+" : "+tokens.get(token)+"\n";
     token=iterator1.next().value;
   }
-  //var elem=document.getElementById("tokeni");
-  //if(elem!=null){elem.innerHTML=tokeni;}  
-  window.alert("Tokens and values are: \n"+tokeni);
+  var elem=document.getElementById("tokeni");
+  if(elem!=null){elem.innerHTML=tokeni;}  
+  //window.alert("Tokens and values are: \n"+tokeni);
   }
 }
 

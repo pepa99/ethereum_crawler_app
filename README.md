@@ -8,10 +8,10 @@ After you've finished with setting up Angular and downloading the project, navig
 
 ## Get transactions list
 
-Enter the wallet address and staring block number and click on Get transactions button.
+Enter the wallet address, staring block number, and click on one of the transaction kind buttons.
 
 ## Check balance of the wallet on specific date
 
-Click on the balance icon and choose token. After that, enter the date and address as instructed. Click on Calculate button and wait until alert window pops out. This window will show amount of ETH on the wallet.
+Click on the balance icon and choose token. After that, enter the date and address as instructed. Click on Calculate button and wait until the alert window pops out or until you get a message in the text area. This message will show the amount of ETH/Token in the wallet.
 
 
